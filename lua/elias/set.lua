@@ -32,3 +32,4 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "119"
 
 vim.g.mapleader = " "
+vim.g.black_use_virtualenv = 0
