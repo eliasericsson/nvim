@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/home/elias/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -124,11 +119,6 @@ _G.packer_plugins = {
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/cmp-spell",
     url = "https://github.com/f3fora/cmp-spell"
   },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/home/elias/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/copilot.vim",
@@ -148,11 +138,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
-  },
-  ["image.nvim"] = {
-    loaded = true,
-    path = "/home/elias/.local/share/nvim/site/pack/packer/start/image.nvim",
-    url = "https://github.com/samodostal/image.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
