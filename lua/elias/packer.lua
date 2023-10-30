@@ -222,4 +222,7 @@ return require('packer').startup(function(use)
             require('colorful-winsep').setup()
         end
     }
+
+    -- Gitsigns, a plugin to show git diff in the gutter
+    use 'lewis6991/gitsigns.nvim'
 end)
