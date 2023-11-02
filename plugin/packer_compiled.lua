@@ -167,6 +167,11 @@ _G.packer_plugins = {
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/elias/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["gv.vim"] = {
     loaded = true,
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/gv.vim",
@@ -212,14 +217,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/elias/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  neoformat = {
-    commands = { "Neoformat" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/elias/.local/share/nvim/site/pack/packer/opt/neoformat",
-    url = "https://github.com/sbdchd/neoformat"
   },
   ["no-neck-pain.nvim"] = {
     loaded = true,
@@ -340,6 +337,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: colorful-winsep.nvim
+time([[Config for colorful-winsep.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20colorful-winsep\frequire\0", "config", "colorful-winsep.nvim")
+time([[Config for colorful-winsep.nvim]], false)
+-- Config for: vim-hexokinase
+time([[Config for vim-hexokinase]], true)
+try_loadstring("\27LJ\2\n³\1\0\0\2\0\a\0\r6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0'\1\5\0=\1\6\0K\0\1\0\30Hexokinase_optOutPatterns\31full_hex,rgb,rgba,hsl,hsla\29Hexokinase_optInPatterns\1\2\0\0\fvirtual\28Hexokinase_highlighters\6g\bvim\0", "config", "vim-hexokinase")
+time([[Config for vim-hexokinase]], false)
+-- Config for: nvim-FeMaco.lua
+time([[Config for nvim-FeMaco.lua]], true)
+require("femaco").setup()
+time([[Config for nvim-FeMaco.lua]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
@@ -348,35 +357,23 @@ time([[Config for trouble.nvim]], false)
 time([[Config for rose-pine]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
 time([[Config for rose-pine]], false)
--- Config for: colorful-winsep.nvim
-time([[Config for colorful-winsep.nvim]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20colorful-winsep\frequire\0", "config", "colorful-winsep.nvim")
-time([[Config for colorful-winsep.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-FeMaco.lua
-time([[Config for nvim-FeMaco.lua]], true)
-require("femaco").setup()
-time([[Config for nvim-FeMaco.lua]], false)
--- Config for: vim-hexokinase
-time([[Config for vim-hexokinase]], true)
-try_loadstring("\27LJ\2\n³\1\0\0\2\0\a\0\r6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0'\1\5\0=\1\6\0K\0\1\0\30Hexokinase_optOutPatterns\31full_hex,rgb,rgba,hsl,hsla\29Hexokinase_optInPatterns\1\2\0\0\fvirtual\28Hexokinase_highlighters\6g\bvim\0", "config", "vim-hexokinase")
-time([[Config for vim-hexokinase]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\n`\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\1\ntheme\15catppuccin\nsetup\flualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]
+vim.cmd [[ packadd nvim-treesitter-textobjects ]]
 vim.cmd [[ packadd nvim-ts-rainbow2 ]]
 
 -- Config for: nvim-ts-rainbow2
 try_loadstring("\27LJ\2\nË\1\0\0\a\0\v\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\t\0005\3\3\0005\4\4\0=\4\5\0036\4\0\0'\6\6\0B\4\2\0029\4\a\0049\4\b\4=\4\a\3=\3\n\2B\0\2\1K\0\1\0\frainbow\1\0\0\vglobal\rstrategy\15ts-rainbow\fdisable\1\3\0\0\bjsx\bcpp\1\0\2\nquery\19rainbow-parens\venable\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-ts-rainbow2")
 
-vim.cmd [[ packadd nvim-treesitter-textobjects ]]
 time([[Sequenced loading]], false)
 
 -- Command lazy-loads
@@ -394,13 +391,6 @@ pcall(vim.api.nvim_create_user_command, 'Black', function(cmdargs)
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'black'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Black ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Neoformat', function(cmdargs)
-          require('packer.load')({'neoformat'}, { cmd = 'Neoformat', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'neoformat'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Neoformat ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 

@@ -62,3 +62,6 @@ vim.keymap.set("n", "<leader>z", "<cmd>lua require('no-neck-pain').toggle()<cr>"
 
 -- Save on capital W
 vim.api.nvim_set_keymap('n', ':W', ':w<CR>', { noremap = true, silent = true })
+
+-- Faster fugitive
+vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true, silent = true })
