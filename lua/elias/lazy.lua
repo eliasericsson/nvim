@@ -297,4 +297,49 @@ require("lazy").setup({
 
     -- Gitsigns, a plugin to show git diff in the gutter
     "lewis6991/gitsigns.nvim",
+
+    -- Oil, browse files like buffers
+    {
+        "stevearc/oil.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("oil").setup({
+                devicons = {
+                    override = {
+                        ["class"] = "",
+                        ["config"] = "",
+                        ["css"] = "",
+                        ["csv"] = "",
+                        ["db"] = "",
+                        ["dockerfile"] = "",
+                        ["env"] = "",
+                        ["git"] = "",
+                        ["go"] = "",
+                        ["html"] = "",
+                        ["ini"] = "",
+                        ["java"] = "",
+                        ["js"] = "",
+                        ["json"] = "",
+                        ["jsx"] = "",
+                        ["lua"] = "",
+                        ["md"] = "",
+                        ["php"] = "",
+                        ["py"] = "",
+                        ["rb"] = "",
+                        ["rs"] = "",
+                        ["sh"] = "",
+                        ["sql"] = "",
+                        ["toml"] = "",
+                        ["ts"] = "ﯤ",
+                        ["tsx"] = "",
+                        ["vim"] = "",
+                        ["vue"] = "﵂",
+                        ["yaml"] = "",
+                    },
+                },
+            })
+        end,
+    }
 })
