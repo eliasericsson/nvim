@@ -41,6 +41,15 @@ require("lazy").setup({
         end
     },
 
+    -- Gruvbox, a dark color scheme
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = function ()
+            vim.cmd('colorscheme gruvbox')
+        end
+    },
+
     -- Colorizer, a color highlighter
     {
         "norcalli/nvim-colorizer.lua",
@@ -128,6 +137,17 @@ require("lazy").setup({
                 auto_close = true,
             })
         end,
+    },
+
+    -- Which Key, a plugin to show keybindings
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {}
     },
 
     -- Harpoon, a bookmark manager
@@ -218,7 +238,9 @@ require("lazy").setup({
                 end)
 
                 require('mason-lspconfig').setup({
-                    ensure_installed = {},
+                    ensure_installed = {
+                        'taplo',
+                    },
                     handlers = {
                         lsp_zero.default_setup,
                         lua_ls = function()
@@ -356,5 +378,21 @@ require("lazy").setup({
                 desc = "Search diagnostic with Google",
             },
         },
-    }
+    },
+
+    -- Git Flog, visual git log viewer
+    {
+        "rbong/vim-flog",
+        lazy = true,
+        cmd = { "Flog", "Flogsplit", "Floggit" },
+        dependencies = {
+            "tpope/vim-fugitive",
+        },
+    },
+
+    -- Vim startuptime, a plugin to show the startup time
+    {
+        "dstein64/vim-startuptime",
+        cmd = { "StartupTime" },
+    },
 })
