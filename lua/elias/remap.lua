@@ -62,6 +62,3 @@ vim.keymap.set("n", "<leader>z", "<cmd>lua require('no-neck-pain').toggle()<cr>"
 
 -- Faster fugitive
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true, silent = true })
-
--- Oil keymaps
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

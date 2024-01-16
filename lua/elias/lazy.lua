@@ -139,16 +139,24 @@ require("lazy").setup({
         end,
     },
 
-    -- Which Key, a plugin to show keybindings
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {}
-    },
+    -- -- Noice, a plugin to show the current buffer in the statusline
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("noice").setup({
+    --             icons = {
+    --                 buffer = "﬘",
+    --             },
+    --             routes = {
+    --                 {
+    --                     view="notify",
+    --                     filter= {event="msg_showmode"}
+    --                 }
+    --             }
+    --         })
+    --     end,
+    -- },
 
     -- Harpoon, a bookmark manager
     "theprimeagen/harpoon",
@@ -299,51 +307,6 @@ require("lazy").setup({
 
     -- Gitsigns, a plugin to show git diff in the gutter
     "lewis6991/gitsigns.nvim",
-
-    -- Oil, browse files like buffers
-    {
-        "stevearc/oil.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("oil").setup({
-                devicons = {
-                    override = {
-                        ["class"] = "",
-                        ["config"] = "",
-                        ["css"] = "",
-                        ["csv"] = "",
-                        ["db"] = "",
-                        ["dockerfile"] = "",
-                        ["env"] = "",
-                        ["git"] = "",
-                        ["go"] = "",
-                        ["html"] = "",
-                        ["ini"] = "",
-                        ["java"] = "",
-                        ["js"] = "",
-                        ["json"] = "",
-                        ["jsx"] = "",
-                        ["lua"] = "",
-                        ["md"] = "",
-                        ["php"] = "",
-                        ["py"] = "",
-                        ["rb"] = "",
-                        ["rs"] = "",
-                        ["sh"] = "",
-                        ["sql"] = "",
-                        ["toml"] = "",
-                        ["ts"] = "ﯤ",
-                        ["tsx"] = "",
-                        ["vim"] = "",
-                        ["vue"] = "﵂",
-                        ["yaml"] = "",
-                    },
-                },
-            })
-        end,
-    },
 
     -- Telescope Import
     {
