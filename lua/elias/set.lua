@@ -33,3 +33,6 @@ vim.opt.colorcolumn = "119"
 
 vim.g.mapleader = " "
 vim.g.black_use_virtualenv = 0
+
+-- Automatically expand the results of the DadBod UI
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, { pattern = "*.dbout", command = "setlocal nofoldenable" })

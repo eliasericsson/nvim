@@ -45,7 +45,7 @@ require("lazy").setup({
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
-        config = function ()
+        config = function()
             vim.cmd('colorscheme gruvbox')
         end
     },
@@ -114,10 +114,15 @@ require("lazy").setup({
         end,
     },
 
+    -- Web Dev Icons, a plugin to show icons in the file explorer
+    {
+        "nvim-tree/nvim-web-devicons",
+    },
+
     -- Lualine, a statusline written in lua
     {
         "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        requires = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
             require("lualine").setup({
                 options = {
@@ -130,7 +135,7 @@ require("lazy").setup({
     -- Trouble, a pretty list for LSP diagnostics
     {
         "folke/trouble.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        requires = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
             require("trouble").setup({
                 auto_open = false,
@@ -192,11 +197,14 @@ require("lazy").setup({
                 vim.g.lsp_zero_extend_lspconfig = 0
             end,
         },
+
+        -- Mason, a plugin to manage LSP and autocompletion
         {
             'williamboman/mason.nvim',
             lazy = false,
             config = true,
         },
+
         -- Autocompletion
         {
             'hrsh7th/nvim-cmp',
@@ -225,6 +233,7 @@ require("lazy").setup({
                 })
             end
         },
+
         -- LSP
         {
             'neovim/nvim-lspconfig',
