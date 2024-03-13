@@ -62,11 +62,16 @@ require("lazy").setup({
     {
         "hrsh7th/nvim-cmp",
         requires = {
-            "hrsh7th/cmp-buffer",
+            -- LSP Completion source:
             "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-calc",
+
+            -- Useful completion sources:
             "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-signature-help",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-calc",
             "hrsh7th/cmp-emoji",
             "quangnguyen30192/cmp-nvim-ultisnips",
             "octaltree/cmp-look",
@@ -143,25 +148,6 @@ require("lazy").setup({
             })
         end,
     },
-
-    -- -- Noice, a plugin to show the current buffer in the statusline
-    -- {
-    --     "folke/noice.nvim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("noice").setup({
-    --             icons = {
-    --                 buffer = "﬘",
-    --             },
-    --             routes = {
-    --                 {
-    --                     view="notify",
-    --                     filter= {event="msg_showmode"}
-    --                 }
-    --             }
-    --         })
-    --     end,
-    -- },
 
     -- Harpoon, a bookmark manager
     "theprimeagen/harpoon",
@@ -265,7 +251,7 @@ require("lazy").setup({
                             local lua_opts = lsp_zero.nvim_lua_ls()
                             require('lspconfig').lua_ls.setup(lua_opts)
                         end,
-                    }
+                    },
                 })
             end
         }
