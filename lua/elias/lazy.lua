@@ -61,6 +61,7 @@ require("lazy").setup({
     -- CMP, a completion plugin with snippets support and more
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         requires = {
             -- LSP Completion source:
             "hrsh7th/cmp-nvim-lsp",
@@ -353,4 +354,11 @@ require("lazy").setup({
         "dstein64/vim-startuptime",
         cmd = { "StartupTime" },
     },
+
+    -- Rustaceanvim, a plugin to make Rust development easier
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    }
 })
