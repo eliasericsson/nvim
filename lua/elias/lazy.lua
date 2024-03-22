@@ -252,6 +252,18 @@ require("lazy").setup({
                             local lua_opts = lsp_zero.nvim_lua_ls()
                             require('lspconfig').lua_ls.setup(lua_opts)
                         end,
+                        bicep = function()
+                            local bicep_lsp_bin = "/usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
+                            require('lspconfig').bicep.setup({
+                                cmd = { "dotnet", bicep_lsp_bin }
+                            })
+                        end,
+                        rust_analyzer = function()
+                            require('lspconfig').rust_analyzer.setup({
+                                cmd = { "~/.nix-profile/bin/rust-analyzer" }
+                                filetypes = { "rust" }
+                            })
+                        end,
                     },
                 })
             end
@@ -355,10 +367,12 @@ require("lazy").setup({
         cmd = { "StartupTime" },
     },
 
-    -- Rustaceanvim, a plugin to make Rust development easier
+    -- Self developed plugin to mediate Git merge conflicts
     {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        ft = { 'rust' },
-    }
+        dir = "~/personal/mediate.nvim",
+        cmd = { "Mediate" },
+        config = function()
+            require("mediate").setup()
+        end,
+    },
 })
