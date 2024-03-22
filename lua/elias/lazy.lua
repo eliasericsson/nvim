@@ -369,10 +369,13 @@ require("lazy").setup({
 
     -- Self developed plugin to mediate Git merge conflicts
     {
-        dir = "~/personal/mediate.nvim",
-        cmd = { "Mediate" },
+        dir = "~/personal/mediate",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        name = "mediate",
         config = function()
-            require("mediate").setup()
-        end,
+            require('mediate').setup()
+        end
     },
 })
