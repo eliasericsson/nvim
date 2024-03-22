@@ -376,6 +376,6 @@ require("lazy").setup({
         name = "mediate",
         config = function()
             require('mediate').setup()
-        end
+        end,
     },
 })
