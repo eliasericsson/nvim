@@ -92,6 +92,12 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
+        requires = {
+            "nvim-treesitter/playground"
+        },
+        keys = {
+            { "<leader>pl", '<cmd>TSPlaygroundToggle<CR>'}
+        }
     },
 
 
