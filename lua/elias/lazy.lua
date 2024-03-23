@@ -90,6 +90,9 @@ require("lazy").setup({
 
     -- Treesitter, a better syntax highlighter
     {
+        "nvim-treesitter/playground",
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         requires = {
