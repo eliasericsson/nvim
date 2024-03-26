@@ -270,7 +270,7 @@ require("lazy").setup({
                         rust_analyzer = function()
                             local rust_analyzer_bin = "/home/elias/.nix-profile/bin/rust-analyzer"
                             require('lspconfig').rust_analyzer.setup({
-                                cmd = { "rust-analyzer" },
+                                cmd = { rust_analyzer_bin },
                                 filetypes = { "rust" },
                             })
                         end,
