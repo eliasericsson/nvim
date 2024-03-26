@@ -267,12 +267,6 @@ require("lazy").setup({
                                 cmd = { "dotnet", bicep_lsp_bin }
                             })
                         end,
-                        rust_analyzer = function()
-                            require('lspconfig').rust_analyzer.setup({
-                                cmd = { "~/.nix-profile/bin/rust-analyzer" },
-                                filetypes = { "rust" }
-                            })
-                        end,
                     },
                 })
             end
@@ -376,18 +370,7 @@ require("lazy").setup({
         cmd = { "StartupTime" },
     },
 
-    -- Self developed plugin to mediate Git merge conflicts
-    {
-        dir = "~/personal/mediate",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        name = "mediate",
-        config = function()
-            require('mediate').setup()
-        end,
-    },
-
+    -- Render markdown nicely in the buffer
     {
         'MeanderingProgrammer/markdown.nvim',
         name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
