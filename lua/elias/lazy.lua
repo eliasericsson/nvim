@@ -252,7 +252,7 @@ require("lazy").setup({
 
                 require('mason-lspconfig').setup({
                     ensure_installed = {
-                        'taplo',
+                        'rust_analyzer', 'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'bicep', 'sumneko_lua', 'ansiblels'
                     },
                     handlers = {
                         lsp_zero.default_setup,
@@ -378,12 +378,5 @@ require("lazy").setup({
         config = function()
             require('render-markdown').setup({})
         end,
-    },
-
-    -- Rusteceanvim
-    {
-       'mrcjkb/rustaceanvim',
-       version = '^4', -- Recommended
-       ft = { 'rust' },
     },
 })
