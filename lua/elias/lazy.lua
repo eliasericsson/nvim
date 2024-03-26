@@ -267,6 +267,12 @@ require("lazy").setup({
                                 cmd = { "dotnet", bicep_lsp_bin }
                             })
                         end,
+                        rust_analyzer = function()
+                            local rust_analyzer_bin = "/home/elias/.nix-profile/bin/rust-analyzer"
+                            require('lspconfig').rust_analyzer.setup({
+                                cmd = { "rust-analyzer" }
+                            })
+                        end,
                     },
                 })
             end
@@ -378,12 +384,5 @@ require("lazy").setup({
         config = function()
             require('render-markdown').setup({})
         end,
-    },
-
-    -- Rusteceanvim
-    {
-       'mrcjkb/rustaceanvim',
-       version = '^4', -- Recommended
-       ft = { 'rust' },
     },
 })
