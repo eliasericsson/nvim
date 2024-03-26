@@ -379,4 +379,11 @@ require("lazy").setup({
             require('render-markdown').setup({})
         end,
     },
+
+    -- Rusteceanvim
+    {
+       'mrcjkb/rustaceanvim',
+       version = '^4', -- Recommended
+       ft = { 'rust' },
+    },
 })
