@@ -267,6 +267,10 @@ require("lazy").setup({
                                 cmd = { "dotnet", bicep_lsp_bin }
                             })
                         end,
+                        rust_analyzer = function()
+                            local rust_analyzer_bin = "~/.nix-profile/bin/rust-analyzer"
+                            require('lspconfig').rust_analyzer.setup{}
+                        end,
                     },
                 })
             end
