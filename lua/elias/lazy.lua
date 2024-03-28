@@ -369,14 +369,4 @@ require("lazy").setup({
         "dstein64/vim-startuptime",
         cmd = { "StartupTime" },
     },
-
-    -- Render markdown nicely in the buffer
-    {
-        'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    },
 })
