@@ -194,12 +194,12 @@ require("lazy").setup({
             end,
         },
 
-        -- Mason, a plugin to manage LSP and autocompletion
-        {
-            'williamboman/mason.nvim',
-            lazy = false,
-            config = true,
-        },
+        -- -- Mason, a plugin to manage LSP and autocompletion
+        -- {
+        --     'williamboman/mason.nvim',
+        --     lazy = false,
+        --     config = true,
+        -- },
 
         -- Autocompletion
         {
@@ -237,11 +237,24 @@ require("lazy").setup({
             event = { 'BufReadPre', 'BufNewFile' },
             dependencies = {
                 { 'hrsh7th/cmp-nvim-lsp' },
-                { 'williamboman/mason-lspconfig.nvim' },
+                -- { 'williamboman/mason-lspconfig.nvim' },
             },
             config = function()
                 -- This is where all the LSP shenanigans will live
                 local lsp_zero = require('lsp-zero')
+
+                lsp_zero.set_preferences({
+                    call_servers = 'global',
+                })
+
+                local lsp_servers = {
+                    'lua_ls',
+                }
+
+                lsp_zero.configure('lua_ls')
+
+                lsp_zero.setup_servers(lsp_servers)
+
                 lsp_zero.extend_lspconfig()
 
                 lsp_zero.on_attach(function(client, bufnr)
@@ -250,25 +263,27 @@ require("lazy").setup({
                     lsp_zero.default_keymaps({ buffer = bufnr })
                 end)
 
-                require('mason-lspconfig').setup({
-                    ensure_installed = {
-                        'rust_analyzer', 'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'lua_ls', 'ansiblels'
-                    },
-                    handlers = {
-                        lsp_zero.default_setup,
-                        lua_ls = function()
-                            -- (Optional) Configure lua language server for neovim
-                            local lua_opts = lsp_zero.nvim_lua_ls()
-                            require('lspconfig').lua_ls.setup(lua_opts)
-                        end,
-                        bicep = function()
-                            local bicep_lsp_bin = "/usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
-                            require('lspconfig').bicep.setup({
-                                cmd = { "dotnet", bicep_lsp_bin }
-                            })
-                        end,
-                    },
-                })
+                lsp_zero.setup()
+
+                -- require('mason-lspconfig').setup({
+                --     ensure_installed = {
+                --         'rust_analyzer', 'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'lua_ls', 'ansiblels'
+                --     },
+                --     handlers = {
+                --         lsp_zero.default_setup,
+                --         lua_ls = function()
+                --             -- (Optional) Configure lua language server for neovim
+                --             local lua_opts = lsp_zero.nvim_lua_ls()
+                --             require('lspconfig').lua_ls.setup(lua_opts)
+                --         end,
+                --         bicep = function()
+                --             local bicep_lsp_bin = "/usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
+                --             require('lspconfig').bicep.setup({
+                --                 cmd = { "dotnet", bicep_lsp_bin }
+                --             })
+                --         end,
+                --     },
+                -- })
             end
         }
     },
