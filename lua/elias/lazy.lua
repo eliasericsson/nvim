@@ -150,6 +150,7 @@ require("lazy").setup({
     -- Trouble, a pretty list for LSP diagnostics
     {
         "folke/trouble.nvim",
+        branch = "dev", -- IMPORTANT!
         requires = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
             require("trouble").setup({
