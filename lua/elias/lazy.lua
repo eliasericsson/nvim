@@ -251,7 +251,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls'
+                    'lua_ls', 'rust_analyzer', 'gopls', 'nil'
                 }
 
                 lsp_zero.configure('lua_ls')
