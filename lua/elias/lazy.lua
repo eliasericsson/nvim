@@ -252,7 +252,7 @@ require("lazy").setup({
 
                 require('mason-lspconfig').setup({
                     ensure_installed = {
-                        'rust_analyzer', 'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'bicep', 'sumneko_lua', 'ansiblels'
+                        'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'lua_ls', 'ansiblels'
                     },
                     handlers = {
                         lsp_zero.default_setup,
@@ -266,6 +266,11 @@ require("lazy").setup({
                             require('lspconfig').bicep.setup({
                                 cmd = { "dotnet", bicep_lsp_bin }
                             })
+                        end,
+                        rust_analyzer = function()
+                            -- (Optional) Configure rust analyzer for neovim
+                            local ra_opts = lsp_zero.rust_analyzer()
+                            require('lspconfig').rust_analyzer.setup(ra_opts)
                         end,
                     },
                 })
