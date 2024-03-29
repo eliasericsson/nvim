@@ -99,7 +99,7 @@ require("lazy").setup({
             "nvim-treesitter/playground"
         },
         keys = {
-            { "<leader>pl", '<cmd>TSPlaygroundToggle<CR>'}
+            { "<leader>pl", '<cmd>TSPlaygroundToggle<CR>' }
         }
     },
 
@@ -250,7 +250,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls',
+                    'lua_ls', 'rust_analyzer', 'gopls'
                 }
 
                 lsp_zero.configure('lua_ls')
