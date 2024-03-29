@@ -243,6 +243,8 @@ require("lazy").setup({
                 -- This is where all the LSP shenanigans will live
                 local lsp_zero = require('lsp-zero')
 
+                lsp_zero.extend_lspconfig()
+
                 lsp_zero.set_preferences({
                     call_servers = 'global',
                 })
@@ -262,8 +264,6 @@ require("lazy").setup({
                 end)
 
                 lsp_zero.setup()
-
-                lsp_zero.extend_lspconfig()
 
                 -- require('mason-lspconfig').setup({
                 --     ensure_installed = {
