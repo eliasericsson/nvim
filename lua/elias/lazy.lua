@@ -255,8 +255,6 @@ require("lazy").setup({
 
                 lsp_zero.setup_servers(lsp_servers)
 
-                lsp_zero.extend_lspconfig()
-
                 lsp_zero.on_attach(function(client, bufnr)
                     -- see :help lsp-zero-keybindings
                     -- to learn the available actions
@@ -264,6 +262,8 @@ require("lazy").setup({
                 end)
 
                 lsp_zero.setup()
+
+                lsp_zero.extend_lspconfig()
 
                 -- require('mason-lspconfig').setup({
                 --     ensure_installed = {
