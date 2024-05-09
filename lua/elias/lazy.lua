@@ -238,7 +238,8 @@ require("lazy").setup({
             event = { 'BufReadPre', 'BufNewFile' },
             dependencies = {
                 { 'hrsh7th/cmp-nvim-lsp' },
-                -- { 'williamboman/mason-lspconfig.nvim' },
+                { 'towolf/vim-helm', ft = 'helm' },
+                 -- { 'williamboman/mason-lspconfig.nvim' },
             },
             config = function()
                 -- This is where all the LSP shenanigans will live
@@ -251,7 +252,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls'
+                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls'
                 }
 
                 lsp_zero.configure('lua_ls')
