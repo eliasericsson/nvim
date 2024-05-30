@@ -112,21 +112,9 @@ require("lazy").setup({
     },
 
 
-    -- Rainbow colored parentheses
+    -- -- Rainbow colored parentheses
     {
-        "HiPhish/nvim-ts-rainbow2",
-        after = "nvim-treesitter",
-        requires = "nvim-treesitter/nvim-treesitter",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                rainbow = {
-                    enable = true,
-                    disable = { "jsx", "cpp" },
-                    query = "rainbow-parens",
-                    strategy = require("ts-rainbow").strategy.global,
-                },
-            })
-        end,
+        "/HiPhish/rainbow-delimiters.nvim",
     },
 
     -- Web Dev Icons, a plugin to show icons in the file explorer
@@ -150,7 +138,6 @@ require("lazy").setup({
     -- Trouble, a pretty list for LSP diagnostics
     {
         "folke/trouble.nvim",
-        branch = "dev", -- IMPORTANT!
         requires = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
             require("trouble").setup({
@@ -238,8 +225,8 @@ require("lazy").setup({
             event = { 'BufReadPre', 'BufNewFile' },
             dependencies = {
                 { 'hrsh7th/cmp-nvim-lsp' },
-                { 'towolf/vim-helm', ft = 'helm' },
-                 -- { 'williamboman/mason-lspconfig.nvim' },
+                { 'towolf/vim-helm',     ft = 'helm' },
+                -- { 'williamboman/mason-lspconfig.nvim' },
             },
             config = function()
                 -- This is where all the LSP shenanigans will live
@@ -252,7 +239,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls'
+                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls',
                 }
 
                 lsp_zero.configure('lua_ls')
@@ -385,5 +372,12 @@ require("lazy").setup({
     {
         "dstein64/vim-startuptime",
         cmd = { "StartupTime" },
+    },
+
+    -- Todo Comments, a plugin to highlight TODO comments
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {}
     },
 })
