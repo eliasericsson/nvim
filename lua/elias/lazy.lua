@@ -239,7 +239,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls',
+                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls', 'tsserver'
                 }
 
                 lsp_zero.configure('lua_ls')
@@ -301,9 +301,21 @@ require("lazy").setup({
     },
 
     -- Fenced Markdown Code Blocks
+    -- {
+    --     "AckslD/nvim-FeMaco.lua",
+    --     config = 'require("FeMaco").setup()'
+    -- },
+
+    -- Vim Pandoc, a plugin to preview markdown files
     {
-        "AckslD/nvim-FeMaco.lua",
-        config = 'require("FeMaco").setup()'
+        "vim-pandoc/vim-pandoc",
+        cmd = { "Pandoc", "PandocPreview" },
+    },
+
+    -- Vim Pandoc Syntax, a plugin to add syntax highlighting for pandoc
+    {
+        "vim-pandoc/vim-pandoc-syntax",
+        after = "vim-pandoc",
     },
 
     -- No Neck Pain, a plugin to avoid neck pain by centering the buffer
