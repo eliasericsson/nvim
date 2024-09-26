@@ -58,28 +58,6 @@ require("lazy").setup({
         end,
     },
 
-    -- CMP, a completion plugin with snippets support and more
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        requires = {
-            -- LSP Completion source:
-            "hrsh7th/cmp-nvim-lsp",
-
-            -- Useful completion sources:
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-nvim-signature-help",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-calc",
-            "hrsh7th/cmp-emoji",
-            "quangnguyen30192/cmp-nvim-ultisnips",
-            "octaltree/cmp-look",
-            "f3fora/cmp-spell",
-        },
-    },
-
     -- Autopairs, a plugin to automatically close pairs
     {
         "windwp/nvim-autopairs",
@@ -114,7 +92,7 @@ require("lazy").setup({
 
     -- -- Rainbow colored parentheses
     {
-        "/HiPhish/rainbow-delimiters.nvim",
+        "HiPhish/rainbow-delimiters.nvim",
     },
 
     -- Web Dev Icons, a plugin to show icons in the file explorer
@@ -189,14 +167,37 @@ require("lazy").setup({
         --     config = true,
         -- },
 
-        -- Autocompletion
+        -- LuaSnip, a snippet engine
+        {
+            'L3MON4D3/LuaSnip',
+            build = "make install_jsregexp"
+        },
+
+        -- CMP, a completion plugin with snippets support and more
         {
             'hrsh7th/nvim-cmp',
             event = 'InsertEnter',
+            requires = {
+                -- LSP Completion source:
+                "hrsh7th/cmp-nvim-lsp",
+
+                -- Useful completion sources:
+                "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-signature-help",
+                "hrsh7th/cmp-vsnip",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-calc",
+                "hrsh7th/cmp-emoji",
+                "quangnguyen30192/cmp-nvim-ultisnips",
+                "octaltree/cmp-look",
+                "f3fora/cmp-spell",
+            },
             dependencies = {
                 { 'L3MON4D3/LuaSnip' },
             },
             config = function()
+                print("Configuring cmp")
                 -- Here is where you configure the autocompletion settings.
                 local lsp_zero = require('lsp-zero')
                 lsp_zero.extend_cmp()
@@ -213,7 +214,19 @@ require("lazy").setup({
                         ['<C-d>'] = cmp.mapping.scroll_docs(4),
                         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
                         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-                    })
+                    }),
+                    sources = {
+                        { name = "nvim_lsp" },
+                        { name = "nvim_lua" },
+                        { name = "buffer" },
+                        { name = "path" },
+                        { name = "vsnip" },
+                        { name = "calc" },
+                        { name = "emoji" },
+                        { name = "ultisnips" },
+                        { name = "look" },
+                        { name = "spell" },
+                    },
                 })
             end
         },
@@ -239,7 +252,7 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls', 'tsserver'
+                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls', 'ts_ls', 'bicep', 'ruff',
                 }
 
                 lsp_zero.configure('lua_ls')
@@ -391,5 +404,20 @@ require("lazy").setup({
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {}
+    },
+
+    -- Which Key, a plugin to show keybindings
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = true })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
     },
 })

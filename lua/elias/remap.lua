@@ -44,7 +44,9 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Add executable permission to file
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("i", "jj", "<Esc>")
 
@@ -57,6 +59,19 @@ vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { silent = 
 vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references toggle<cr>", { silent = true, noremap = true })
+
+-- Todo comments keymaps
+vim.keymap.set("n", "<leader>tc", "<cmd>TodoTelescope<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>TodoTrouble<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>tl", "<cmd>TodoLocList<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>tn", function()
+    require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "<leader>tp", function()
+    require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
 
 -- Black keymaps
 vim.keymap.set("n", "<leader>bb", "<cmd>!black %<cr>", { silent = true, noremap = true })
