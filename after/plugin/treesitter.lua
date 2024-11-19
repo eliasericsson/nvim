@@ -34,6 +34,9 @@ require 'nvim-treesitter.configs'.setup {
                 ["ac"] = "@class.outer",
                 ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
                 ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+                ["is"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+                ["lh"] = "@assignment.lhs",
+                ["rh"] = "@assignment.rhs",
             },
             selection_modes = {
                 ['@parameter.outer'] = 'v', -- charwise
