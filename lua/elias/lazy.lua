@@ -160,12 +160,12 @@ require("lazy").setup({
             end,
         },
 
-        -- -- Mason, a plugin to manage LSP and autocompletion
-        -- {
-        --     'williamboman/mason.nvim',
-        --     lazy = false,
-        --     config = true,
-        -- },
+        -- Mason, a plugin to manage LSP and autocompletion
+        {
+            'williamboman/mason.nvim',
+            lazy = false,
+            config = true
+        },
 
         -- LuaSnip, a snippet engine
         {
@@ -238,12 +238,13 @@ require("lazy").setup({
             event = { 'BufReadPre', 'BufNewFile' },
             dependencies = {
                 { 'hrsh7th/cmp-nvim-lsp' },
-                { 'towolf/vim-helm',     ft = 'helm' },
-                -- { 'williamboman/mason-lspconfig.nvim' },
+                { 'towolf/vim-helm',                  ft = 'helm' },
+                { 'williamboman/mason-lspconfig.nvim' },
             },
             config = function()
                 -- This is where all the LSP shenanigans will live
                 local lsp_zero = require('lsp-zero')
+                local lspconfig = require('mason-lspconfig')
 
                 lsp_zero.extend_lspconfig()
 
@@ -252,7 +253,18 @@ require("lazy").setup({
                 })
 
                 local lsp_servers = {
-                    'lua_ls', 'rust_analyzer', 'gopls', 'nil_ls', 'yamlls', 'terraformls', 'ts_ls', 'bicep', 'ruff',
+                    'lua_ls',
+                    'rust_analyzer',
+                    'gopls',
+                    'nil_ls',
+                    'yamlls',
+                    'terraformls',
+                    'ts_ls',
+                    'bicep',
+                    'ruff',
+                    'eslint',
+                    'ts_ls',
+                    'taplo',
                 }
 
                 lsp_zero.configure('lua_ls')
@@ -265,27 +277,8 @@ require("lazy").setup({
                     lsp_zero.default_keymaps({ buffer = bufnr })
                 end)
 
+                lspconfig.setup()
                 lsp_zero.setup()
-
-                -- require('mason-lspconfig').setup({
-                --     ensure_installed = {
-                --         'rust_analyzer', 'tsserver', 'pyright', 'gopls', 'bashls', 'dockerls', 'jsonls', 'yamlls', 'vimls', 'html', 'cssls', 'lua_ls', 'ansiblels'
-                --     },
-                --     handlers = {
-                --         lsp_zero.default_setup,
-                --         lua_ls = function()
-                --             -- (Optional) Configure lua language server for neovim
-                --             local lua_opts = lsp_zero.nvim_lua_ls()
-                --             require('lspconfig').lua_ls.setup(lua_opts)
-                --         end,
-                --         bicep = function()
-                --             local bicep_lsp_bin = "/usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
-                --             require('lspconfig').bicep.setup({
-                --                 cmd = { "dotnet", bicep_lsp_bin }
-                --             })
-                --         end,
-                --     },
-                -- })
             end
         }
     },
@@ -312,12 +305,6 @@ require("lazy").setup({
         ft = "python",
         cmd = { "Black" },
     },
-
-    -- Fenced Markdown Code Blocks
-    -- {
-    --     "AckslD/nvim-FeMaco.lua",
-    --     config = 'require("FeMaco").setup()'
-    -- },
 
     -- Vim Pandoc, a plugin to preview markdown files
     {
@@ -419,5 +406,38 @@ require("lazy").setup({
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
+    },
+
+    -- Octo, a GH CLI wrapper for Neovim
+    {
+        "pwntester/octo.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+        cmd = { "Octo" },
+        config = function()
+            require("octo").setup()
+        end,
+    },
+
+    -- Cloak, a plugin to hide text
+    {
+        "laytan/cloak.nvim",
+        config = function()
+            require("cloak").setup({
+                patterns = {
+                    {
+                        file_pattern = ".env*",
+                        cloak_pattern = "=.*",
+                    },
+                    {
+                        file_pattern = "credentials",
+                        cloak_pattern = "=.*",
+                    }
+                },
+            })
+        end,
     },
 })

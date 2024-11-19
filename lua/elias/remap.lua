@@ -84,5 +84,10 @@ vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true, silent 
 vim.api.nvim_set_keymap('n', '<leader>nc', ']c', { noremap = true, silent = true }) -- Find next conflict
 vim.api.nvim_set_keymap('n', '<leader>pc', '[c', { noremap = true, silent = true }) -- Find previous conflict
 
+-- Octo keymaps
+vim.keymap.set("n", "<leader>prl", "<cmd>Octo pr list<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>prc", "<cmd>Octo pr create<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>prv", "<cmd>Octo pr view<cr>", { silent = true, noremap = true })
+
 -- DBUI keymaps
 vim.keymap.set("n", "<leader>dad", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true })
