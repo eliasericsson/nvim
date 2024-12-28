@@ -91,3 +91,15 @@ vim.keymap.set("n", "<leader>prv", "<cmd>Octo pr view<cr>", { silent = true, nor
 
 -- DBUI keymaps
 vim.keymap.set("n", "<leader>dad", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true })
+
+-- Commment box keymaps
+vim.keymap.set("n", "<leader>bx", function()
+    -- Uppercase current line
+    vim.cmd("normal! gUU")
+    -- Run :CBlcbox
+    vim.cmd("CBlcbox")
+    -- Select current and previous two lines
+    vim.cmd("normal! Vkk")
+    -- Prepend // to the selected lines
+    vim.cmd("normal! \\<C-v>kI// <Esc>")
+end, { silent = true, noremap = true })

@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -11,433 +11,160 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 require("lazy").setup({
-    -- GitHub Copilot
-    "github/copilot.vim",
-
-    -- Plenary, a utility library
-    "nvim-lua/plenary.nvim",
-
-    -- Telescope, a fuzzy finder
-    {
-        "nvim-telescope/telescope.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-        }
+    spec = {
+        -- { "folke/tokyonight.nvim",  config = function() vim.cmd("colorscheme tokyonight") end },
+        { "ellisonleao/gruvbox.nvim", config = function() vim.cmd("colorscheme gruvbox") end },
+        "HiPhish/rainbow-delimiters.nvim",     -- Rainbow colored parentheses
+        "LudoPinelli/comment-box.nvim",        -- Comment box, a plugin to create comment boxes
+        "github/copilot.vim",                  -- GitHub Copilot
+        "grafana/vim-alloy",                   -- Grafana Alloy
+        "lewis6991/gitsigns.nvim",             -- Gitsigns, a plugin to show git diff in the gutter
+        "lukas-reineke/indent-blankline.nvim", -- Indentation guides
+        "mbbill/undotree",                     -- Undotree, a visual undo history
+        "nvim-lua/plenary.nvim",               -- Plenary, a utility library
+        "nvim-tree/nvim-web-devicons",         -- Web Dev Icons, a plugin to show icons
+        "pearofducks/ansible-vim",             -- Ansible-vim, syntax highlighting for Ansible file
+        "ray-x/lsp_signature.nvim",            -- LSP signature as you type
+        "theprimeagen/harpoon",                -- Harpoon, a bookmark manager
+        "tpope/vim-commentary",                -- Commentary, a better commenting plugin
+        "tpope/vim-fugitive",                  -- Git integration
+        { import = "elias.plugins" }
     },
-
-    -- Commentary, a better commenting plugin
-    "tpope/vim-commentary",
-
-    -- Git integration
-    "tpope/vim-fugitive",
-
-    -- Catpuccin, a pastel color scheme
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        config = function()
-            vim.cmd('colorscheme catppuccin')
-        end
-    },
-
-    -- Gruvbox, a dark color scheme
-    {
-        "ellisonleao/gruvbox.nvim",
-        priority = 1000,
-        config = function()
-            vim.cmd('colorscheme gruvbox')
-        end
-    },
-
-    -- Colorizer, a color highlighter
-    {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup()
-        end,
-    },
-
-    -- Autopairs, a plugin to automatically close pairs
-    {
-        "windwp/nvim-autopairs",
-        config = function()
-            require("nvim-autopairs").setup()
-        end
-    },
-
-    -- Treesitter, a better syntax highlighter
-    {
-        "nvim-treesitter/playground",
-    },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        requires = {
-            "nvim-treesitter/playground"
-        },
-        keys = {
-            { "<leader>pl", '<cmd>TSPlaygroundToggle<CR>' }
-        }
-    },
-
-
-    -- Treesitter text objects, like vim-surround
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        after = "nvim-treesitter",
-        requires = "nvim-treesitter/nvim-treesitter",
-    },
-
-
-    -- -- Rainbow colored parentheses
-    {
-        "HiPhish/rainbow-delimiters.nvim",
-    },
-
-    -- Web Dev Icons, a plugin to show icons in the file explorer
-    {
-        "nvim-tree/nvim-web-devicons",
-    },
-
-    -- Lualine, a statusline written in lua
-    {
-        "nvim-lualine/lualine.nvim",
-        requires = { "nvim-tree/nvim-web-devicons", opt = true },
-        config = function()
-            require("lualine").setup({
-                options = {
-                    theme = "catppuccin",
-                },
-            })
-        end,
-    },
-
-    -- Trouble, a pretty list for LSP diagnostics
-    {
-        "folke/trouble.nvim",
-        requires = { "nvim-tree/nvim-web-devicons", opt = true },
-        config = function()
-            require("trouble").setup({
-                auto_open = false,
-                auto_close = true,
-            })
-        end,
-    },
-
-    -- Harpoon, a bookmark manager
-    "theprimeagen/harpoon",
-
-    -- Undotree, a visual undo history
-    "mbbill/undotree",
-
-    -- Git graph
-    {
-        "junegunn/gv.vim",
-        requires = { "tpope/vim-fugitive" },
-    },
-
-    -- Dadbod, a database explorer
-    "tpope/vim-dadbod",
-
-    -- Dadbod UI, a UI for dadbod
-    {
-        "kristijanhusak/vim-dadbod-ui",
-        requires = { "tpope/vim-dadbod" },
-    },
-
-    -- LSP Zero, a lightweight LSP client
-    {
-        {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v3.x',
-            lazy = true,
-            config = false,
-            init = function()
-                -- Disable automatic setup, we are doing it manually
-                vim.g.lsp_zero_extend_cmp = 0
-                vim.g.lsp_zero_extend_lspconfig = 0
-            end,
-        },
-
-        -- Mason, a plugin to manage LSP and autocompletion
-        {
-            'williamboman/mason.nvim',
-            lazy = false,
-            config = true
-        },
-
-        -- LuaSnip, a snippet engine
-        {
-            'L3MON4D3/LuaSnip',
-            build = "make install_jsregexp"
-        },
-
-        -- CMP, a completion plugin with snippets support and more
-        {
-            'hrsh7th/nvim-cmp',
-            event = 'InsertEnter',
-            requires = {
-                -- LSP Completion source:
-                "hrsh7th/cmp-nvim-lsp",
-
-                -- Useful completion sources:
-                "hrsh7th/cmp-nvim-lua",
-                "hrsh7th/cmp-nvim-signature-help",
-                "hrsh7th/cmp-vsnip",
-                "hrsh7th/cmp-path",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-calc",
-                "hrsh7th/cmp-emoji",
-                "quangnguyen30192/cmp-nvim-ultisnips",
-                "octaltree/cmp-look",
-                "f3fora/cmp-spell",
-            },
-            dependencies = {
-                { 'L3MON4D3/LuaSnip' },
-            },
-            config = function()
-                print("Configuring cmp")
-                -- Here is where you configure the autocompletion settings.
-                local lsp_zero = require('lsp-zero')
-                lsp_zero.extend_cmp()
-
-                -- And you can configure cmp even more, if you want to.
-                local cmp = require('cmp')
-                local cmp_action = lsp_zero.cmp_action()
-
-                cmp.setup({
-                    formatting = lsp_zero.cmp_format(),
-                    mapping = cmp.mapping.preset.insert({
-                        ['<C-Space>'] = cmp.mapping.complete(),
-                        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-                        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-                    }),
-                    sources = {
-                        { name = "nvim_lsp" },
-                        { name = "nvim_lua" },
-                        { name = "buffer" },
-                        { name = "path" },
-                        { name = "vsnip" },
-                        { name = "calc" },
-                        { name = "emoji" },
-                        { name = "ultisnips" },
-                        { name = "look" },
-                        { name = "spell" },
-                    },
-                })
-            end
-        },
-
-        -- LSP
-        {
-            'neovim/nvim-lspconfig',
-            cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-            event = { 'BufReadPre', 'BufNewFile' },
-            dependencies = {
-                { 'hrsh7th/cmp-nvim-lsp' },
-                { 'towolf/vim-helm',                  ft = 'helm' },
-                { 'williamboman/mason-lspconfig.nvim' },
-            },
-            config = function()
-                -- This is where all the LSP shenanigans will live
-                local lsp_zero = require('lsp-zero')
-                local lspconfig = require('mason-lspconfig')
-
-                lsp_zero.extend_lspconfig()
-
-                lsp_zero.set_preferences({
-                    call_servers = 'global',
-                })
-
-                local lsp_servers = {
-                    'lua_ls',
-                    'rust_analyzer',
-                    'gopls',
-                    'nil_ls',
-                    'yamlls',
-                    'terraformls',
-                    'ts_ls',
-                    'bicep',
-                    'ruff',
-                    'eslint',
-                    'ts_ls',
-                    'taplo',
-                }
-
-                lsp_zero.configure('lua_ls')
-
-                lsp_zero.setup_servers(lsp_servers)
-
-                lsp_zero.on_attach(function(client, bufnr)
-                    -- see :help lsp-zero-keybindings
-                    -- to learn the available actions
-                    lsp_zero.default_keymaps({ buffer = bufnr })
-                end)
-
-                lspconfig.setup()
-                lsp_zero.setup()
-            end
-        }
-    },
-
-    -- Markdown Preview
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function()
-            vim.fn["mkdp#util#install"]()
-        end,
-    },
-
-    -- Indentation guides
-    "lukas-reineke/indent-blankline.nvim",
-
-    -- LSP signature as you type
-    "ray-x/lsp_signature.nvim",
-
-    -- Black python formatter
-    {
-        "psf/black",
-        ft = "python",
-        cmd = { "Black" },
-    },
-
-    -- Vim Pandoc, a plugin to preview markdown files
-    {
-        "vim-pandoc/vim-pandoc",
-        cmd = { "Pandoc", "PandocPreview" },
-    },
-
-    -- Vim Pandoc Syntax, a plugin to add syntax highlighting for pandoc
-    {
-        "vim-pandoc/vim-pandoc-syntax",
-        after = "vim-pandoc",
-    },
-
-    -- No Neck Pain, a plugin to avoid neck pain by centering the buffer
-    "shortcuts/no-neck-pain.nvim",
-
-    -- Ansible-vim, syntax highlighting for Ansible file
-    "pearofducks/ansible-vim",
-
-    -- Colorful Winsep, a plugin to colorize the window separator
-    {
-        "nvim-zh/colorful-winsep.nvim",
-        config = function()
-            require("colorful-winsep").setup()
-        end,
-    },
-
-    -- Gitsigns, a plugin to show git diff in the gutter
-    "lewis6991/gitsigns.nvim",
-
-    -- Telescope Import
-    {
-        'piersolenski/telescope-import.nvim',
-        dependencies = 'nvim-telescope/telescope.nvim',
-        config = function()
-            require("telescope").load_extension("import")
-        end
-    },
-
-    -- WTF
-    {
-        "piersolenski/wtf.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
-        keys = {
-            {
-                "gw",
-                mode = { "n", "x" },
-                function()
-                    require("wtf").ai()
-                end,
-                desc = "Debug diagnostic with AI",
-            },
-            {
-                mode = { "n" },
-                "gW",
-                function()
-                    require("wtf").search()
-                end,
-                desc = "Search diagnostic with Google",
-            },
-        },
-    },
-
-    -- Git Flog, visual git log viewer
-    {
-        "rbong/vim-flog",
-        lazy = true,
-        cmd = { "Flog", "Flogsplit", "Floggit" },
-        dependencies = {
-            "tpope/vim-fugitive",
-        },
-    },
-
-    -- Vim startuptime, a plugin to show the startup time
-    {
-        "dstein64/vim-startuptime",
-        cmd = { "StartupTime" },
-    },
-
-    -- Todo Comments, a plugin to highlight TODO comments
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
-
-    -- Which Key, a plugin to show keybindings
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = true })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
-        },
-    },
-
-    -- Octo, a GH CLI wrapper for Neovim
-    {
-        "pwntester/octo.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
-            "nvim-tree/nvim-web-devicons",
-        },
-        cmd = { "Octo" },
-        config = function()
-            require("octo").setup()
-        end,
-    },
-
-    -- Cloak, a plugin to hide text
-    {
-        "laytan/cloak.nvim",
-        config = function()
-            require("cloak").setup({
-                patterns = {
-                    {
-                        file_pattern = ".env*",
-                        cloak_pattern = "=.*",
-                    },
-                    {
-                        file_pattern = "credentials",
-                        cloak_pattern = "=.*",
-                    }
-                },
-            })
-        end,
-    },
+    change_detection = {
+        enabled = false,
+        notify = false, -- get a notification when changes are detected
+    }
 })
+
+--     -- LSP Zero, a lightweight LSP client
+--     {
+--         {
+--             'VonHeikemen/lsp-zero.nvim',
+--             branch = 'v3.x',
+--             lazy = true,
+--             config = false,
+--             init = function()
+--                 -- Disable automatic setup, we are doing it manually
+--                 vim.g.lsp_zero_extend_cmp = 0
+--                 vim.g.lsp_zero_extend_lspconfig = 0
+--             end,
+--         },
+
+--         -- Mason, a plugin to manage LSP and autocompletion
+--         {
+--             'williamboman/mason.nvim',
+--             lazy = false,
+--             config = true
+--         },
+
+--         -- LuaSnip, a snippet engine
+--         {
+--             'L3MON4D3/LuaSnip',
+--             build = "make install_jsregexp"
+--         },
+
+--         -- CMP, a completion plugin with snippets support and more
+--         {
+--             'hrsh7th/nvim-cmp',
+--             event = 'InsertEnter',
+
+--             requires = {
+--                 -- LSP Completion source:
+--                 "hrsh7th/cmp-nvim-lsp",
+
+--                 -- Useful completion sources:
+--                 "hrsh7th/cmp-nvim-lua",
+--                 "hrsh7th/cmp-nvim-signature-help",
+--                 "hrsh7th/cmp-vsnip",
+--                 "hrsh7th/cmp-path",
+--                 "hrsh7th/cmp-buffer",
+--                 "hrsh7th/cmp-calc",
+--                 "hrsh7th/cmp-emoji",
+--                 "quangnguyen30192/cmp-nvim-ultisnips",
+--                 "octaltree/cmp-look",
+--                 "f3fora/cmp-spell",
+--             },
+
+--             dependencies = {
+--                 { 'L3MON4D3/LuaSnip' },
+--             },
+
+--             config = function()
+--                 print("Configuring cmp")
+--                 -- Here is where you configure the autocompletion settings.
+--                 local lsp_zero = require('lsp-zero')
+--                 lsp_zero.extend_cmp()
+
+--                 -- And you can configure cmp even more, if you want to.
+--                 local cmp = require('cmp')
+--                 local cmp_action = lsp_zero.cmp_action()
+
+--                 cmp.setup({
+--                     formatting = lsp_zero.cmp_format(),
+--                     mapping = cmp.mapping.preset.insert({
+--                         ['<C-Tab>'] = cmp.mapping.complete(),
+--                         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+--                         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+--                         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+--                         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+--                     }),
+--                     sources = {
+--                         { name = "nvim_lsp" },
+--                         { name = "nvim_lua" },
+--                         { name = "buffer" },
+--                         { name = "path" },
+--                         { name = "vsnip" },
+--                         { name = "calc" },
+--                         { name = "emoji" },
+--                         { name = "ultisnips" },
+--                         { name = "look" },
+--                         { name = "spell" },
+--                     },
+--                 })
+--             end
+--         },
+
+--         -- LSP
+--         {
+--             'neovim/nvim-lspconfig',
+--             cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+
+--             event = { 'BufReadPre', 'BufNewFile' },
+
+--             dependencies = {
+--                 { 'hrsh7th/cmp-nvim-lsp' },
+--                 { 'towolf/vim-helm',                  ft = 'helm' },
+--                 { 'williamboman/mason-lspconfig.nvim' },
+--                 { 'saghen/blink.cmp' },
+--             },
+
+--             opts = {
+--                 servers = {
+--                     lua_ls = {},
+--                     rust_analyzer = {},
+--                     gopls = {},
+--                     nil_ls = {},
+--                     yamlls = {},
+--                     terraformls = {},
+--                     ts_ls = {},
+--                     bicep = {},
+--                     ruff = {},
+--                     eslint = {},
+--                     taplo = {},
+--                 }
+--             },
+--             config = function(_, opts)
+--                 -- This is where all the LSP shenanigans will live
+--                 -- local lsp_zero = require('lsp-zero')
+--                 local lspconfig = require('lspconfig')
+--                 for server, config in pairs(opts.servers) do
+--                     config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+--                     lspconfig[server].setup(config)
+--                 end
+--             end
+--         }
+--     },
