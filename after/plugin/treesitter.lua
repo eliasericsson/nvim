@@ -1,4 +1,7 @@
 require 'nvim-treesitter.configs'.setup {
+    modules = {},
+    ignore_install = {},
+
     -- A list of parser names, or "all"
     ensure_installed = { "c", "javascript", "typescript", "lua", "rust", "kotlin", "terraform", "yaml", "python" },
 

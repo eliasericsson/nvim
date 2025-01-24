@@ -103,3 +103,11 @@ vim.keymap.set("n", "<leader>bx", function()
     -- Prepend // to the selected lines
     vim.cmd("normal! \\<C-v>kI// <Esc>")
 end, { silent = true, noremap = true })
+
+-- LuaSnip keymaps
+-- local ls = require("luasnip")
+-- vim.keymap.set({"i", "s"}, "<C-k>", function()
+--     if ls.expand_or_jumpable() then
+--         return ls.expand_or_jump()
+--     end
+-- end, { silent = true, noremap = true })
