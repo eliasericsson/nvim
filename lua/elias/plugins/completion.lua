@@ -6,7 +6,9 @@ return {
         },
         version = 'v0.*',
         opts = {
-            keymap = { preset = 'default' },
+            keymap = {
+                preset = 'default',
+            },
             appearance = {
                 use_nvim_cmp_as_default = true,
                 nerd_font_variant = 'mono'
@@ -26,6 +28,18 @@ return {
                 jump = function(direction)
                     require("luasnip").jump(direction)
                 end,
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                    draw = {
+                        columns = {
+                            { "label",     "label_description", gap = 1 },
+                            { "kind_icon", "kind",              gap = 1 },
+                        }
+                    }
+                },
+                documentation = { auto_show = true, auto_show_delay_ms = 100, },
             },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },

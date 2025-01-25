@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Ex mode" })
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>")
@@ -30,9 +30,6 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
--- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -103,11 +100,3 @@ vim.keymap.set("n", "<leader>bx", function()
     -- Prepend // to the selected lines
     vim.cmd("normal! \\<C-v>kI// <Esc>")
 end, { silent = true, noremap = true })
-
--- LuaSnip keymaps
--- local ls = require("luasnip")
--- vim.keymap.set({"i", "s"}, "<C-k>", function()
---     if ls.expand_or_jumpable() then
---         return ls.expand_or_jump()
---     end
--- end, { silent = true, noremap = true })
