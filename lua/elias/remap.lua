@@ -1,5 +1,10 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Ex mode" })
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Explore, { desc = "Open Netrw file explorer" })
+vim.keymap.set("n", "<leader>pv", function ()
+    if not pcall(vim.cmd.Rexplore) then
+        vim.cmd("Explore")
+    end
+end, { desc = "Open Netrw file explorer" })
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>")
