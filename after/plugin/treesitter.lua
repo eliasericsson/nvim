@@ -1,4 +1,7 @@
 require 'nvim-treesitter.configs'.setup {
+    modules = {},
+    ignore_install = {},
+
     -- A list of parser names, or "all"
     ensure_installed = { "c", "javascript", "typescript", "lua", "rust", "kotlin", "terraform", "yaml", "python" },
 
@@ -45,5 +48,15 @@ require 'nvim-treesitter.configs'.setup {
             },
             include_surrounding_whitespace = true,
         }
-    }
+    },
+
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<C-n>",
+            node_incremental = "<C-n>",
+            scope_incremental = "<C-s>",
+            node_decremental = "<C-d>",
+        },
+    },
 }

@@ -36,3 +36,5 @@ vim.g.black_use_virtualenv = 0
 
 -- Automatically expand the results of the DadBod UI
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, { pattern = "*.dbout", command = "setlocal nofoldenable" })
+
+vim.lsp.set_log_level("off")

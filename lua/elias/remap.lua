@@ -1,5 +1,10 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Explore, { desc = "Open Netrw file explorer" })
+vim.keymap.set("n", "<leader>pv", function()
+    if not pcall(vim.cmd.Rexplore) then
+        vim.cmd("Explore")
+    end
+end, { desc = "Open Netrw file explorer" })
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>")
@@ -30,9 +35,6 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
--- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -81,8 +83,10 @@ vim.keymap.set("n", "<leader>z", "<cmd>lua require('no-neck-pain').toggle()<cr>"
 
 -- Faster fugitive
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>nc', ']c', { noremap = true, silent = true }) -- Find next conflict
-vim.api.nvim_set_keymap('n', '<leader>pc', '[c', { noremap = true, silent = true }) -- Find previous conflict
+vim.api.nvim_set_keymap('n', '<leader>nc', ']c', { noremap = true, silent = true })            -- Find next conflict
+vim.api.nvim_set_keymap('n', '<leader>pc', '[c', { noremap = true, silent = true })            -- Find previous conflict
+vim.api.nvim_set_keymap('n', '<leader>gp', ':Git push<CR>', { noremap = true, silent = true }) -- Push
+vim.api.nvim_set_keymap('n', '<leader>gP', ':Git pull<CR>', { noremap = true, silent = true }) -- Pull
 
 -- Octo keymaps
 vim.keymap.set("n", "<leader>prl", "<cmd>Octo pr list<cr>", { silent = true, noremap = true })
@@ -91,3 +95,15 @@ vim.keymap.set("n", "<leader>prv", "<cmd>Octo pr view<cr>", { silent = true, nor
 
 -- DBUI keymaps
 vim.keymap.set("n", "<leader>dad", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true })
+
+-- Commment box keymaps
+vim.keymap.set("n", "<leader>bx", function()
+    -- Uppercase current line
+    vim.cmd("normal! gUU")
+    -- Run :CBlcbox
+    vim.cmd("CBlcbox")
+    -- Select current and previous two lines
+    vim.cmd("normal! Vkk")
+    -- Prepend // to the selected lines
+    vim.cmd("normal! \\<C-v>kI// <Esc>")
+end, { silent = true, noremap = true })
