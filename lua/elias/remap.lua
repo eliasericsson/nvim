@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Explore, { desc = "Open Netrw file explorer" })
-vim.keymap.set("n", "<leader>pv", function ()
+vim.keymap.set("n", "<leader>pv", function()
     if not pcall(vim.cmd.Rexplore) then
         vim.cmd("Explore")
     end
@@ -83,8 +83,11 @@ vim.keymap.set("n", "<leader>z", "<cmd>lua require('no-neck-pain').toggle()<cr>"
 
 -- Faster fugitive
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>nc', ']c', { noremap = true, silent = true }) -- Find next conflict
-vim.api.nvim_set_keymap('n', '<leader>pc', '[c', { noremap = true, silent = true }) -- Find previous conflict
+vim.api.nvim_set_keymap('n', '<leader>nc', ']c', { noremap = true, silent = true })                                           -- Find next conflict
+vim.api.nvim_set_keymap('n', '<leader>pc', '[c', { noremap = true, silent = true })                                           -- Find previous conflict
+vim.api.nvim_set_keymap('n', '<leader>gp', ':Git push<CR>', { noremap = true, silent = true })                                -- Push
+vim.api.nvim_set_keymap('n', '<leader>gr', ':Git fetch<CR>:Git rebase -i origin/main<CR>',
+    { noremap = true, silent = true })                                                                                        -- Fetch and rebase origin/main
 
 -- Octo keymaps
 vim.keymap.set("n", "<leader>prl", "<cmd>Octo pr list<cr>", { silent = true, noremap = true })

@@ -3,6 +3,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             "saghen/blink.cmp",
+            "Afourcat/treesitter-terraform-doc.nvim",
             {
                 "folke/lazydev.nvim",
                 opts = {
@@ -19,7 +20,21 @@ return {
                 gopls = {},
                 nil_ls = {},
                 yamlls = {},
-                terraformls = {},
+                terraformls = {
+                    on_attach = function ()
+                        require("treesitter-terraform-doc").setup({
+                            -- The vim user command that will trigger the plugin.
+                            command_name       = "OpenDoc",
+
+                            -- The command that will take the url as a parameter.
+                            url_opener_command = "!open",
+
+                            -- If true, the cursor will jump to the anchor in the documentation.
+                            jump_argument      = true,
+                        })
+                        vim.keymap.set("n", "gh", vim.cmd.OpenDoc, { desc = "Get help from the Terraform Documentation"})
+                    end
+                },
                 ts_ls = {},
                 bicep = {},
                 ruff = {},
