@@ -17,7 +17,8 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     spec = {
         -- { "folke/tokyonight.nvim",  config = function() vim.cmd("colorscheme tokyonight") end },
-        { "ellisonleao/gruvbox.nvim", config = function() vim.cmd("colorscheme gruvbox") end },
+        -- { "ellisonleao/gruvbox.nvim", config = function() vim.cmd("colorscheme gruvbox") end },
+        { "scottmckendry/cyberdream.nvim", config = function() vim.cmd("colorscheme cyberdream") end },
         "HiPhish/rainbow-delimiters.nvim",     -- Rainbow colored parentheses
         "LudoPinelli/comment-box.nvim",        -- Comment box, a plugin to create comment boxes
         "github/copilot.vim",                  -- GitHub Copilot

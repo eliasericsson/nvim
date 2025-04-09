@@ -11,9 +11,7 @@ return {
     s("hint",
         fmt(
             [[
-        {{% hint style="{1}" %}}
-        {2}
-        {{% endhint %}}
+        {{% hint style="{1}" %}} {2} {{% endhint %}}
             ]],
             {
                 c(1, { t("info"), t("success"), t("warning"), t("danger") }),
