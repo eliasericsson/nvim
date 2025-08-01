@@ -56,11 +56,11 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
 
 -- Trouble keymaps
-vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references toggle<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=true<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle focus=true<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle focus=true<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references toggle focus=true<cr>", { silent = true, noremap = true })
 
 -- Todo comments keymaps
 vim.keymap.set("n", "<leader>tc", "<cmd>TodoTelescope<cr>", { silent = true, noremap = true })

@@ -17,7 +17,13 @@ return {
             servers = {
                 lua_ls = {},
                 rust_analyzer = {},
-                gopls = {},
+                gopls = {
+                    settings = {
+                        gopls = {
+                            gofumpt = true
+                        },
+                    },
+                },
                 nil_ls = {},
                 yamlls = {},
                 terraformls = {

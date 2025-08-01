@@ -21,7 +21,7 @@ require("lazy").setup({
         { "scottmckendry/cyberdream.nvim", config = function() vim.cmd("colorscheme cyberdream") end },
         "HiPhish/rainbow-delimiters.nvim",     -- Rainbow colored parentheses
         "LudoPinelli/comment-box.nvim",        -- Comment box, a plugin to create comment boxes
-        "github/copilot.vim",                  -- GitHub Copilot
+        -- "github/copilot.vim",                  -- GitHub Copilot
         "grafana/vim-alloy",                   -- Grafana Alloy
         "lewis6991/gitsigns.nvim",             -- Gitsigns, a plugin to show git diff in the gutter
         "lukas-reineke/indent-blankline.nvim", -- Indentation guides

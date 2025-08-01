@@ -19,4 +19,36 @@ return {
             }
         )
     ),
+
+    s("cls", fmt([[
+    interface {}Config {{
+    }}
+
+    class {} extends {} {{
+        constructor(scope: {}, id: string, config: {}Config) {{
+            super(scope, id);
+            {}
+        }}
+    }}
+    ]], {
+        i(1, "Class"),
+        rep(1),
+        i(2, "SuperClass"),
+        rep(2),
+        rep(1),
+        i(0)
+    })),
+
+    s("efi", fmt([[
+    {}, err := {}({})
+    if err != nil {{
+        return {}{}
+    }}
+    ]], {
+        i(1, "res"),
+        i(2, "function"),
+        i(3, "input"),
+        rep(1),
+        i(0)
+    }))
 }
