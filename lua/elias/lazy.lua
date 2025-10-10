@@ -37,7 +37,7 @@ require("lazy").setup({
         { import = "elias.plugins" }
     },
     change_detection = {
-        enabled = false,
-        notify = false, -- get a notification when changes are detected
+        enabled = true,
+        notify = true,
     }
 })

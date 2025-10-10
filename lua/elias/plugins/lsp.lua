@@ -24,6 +24,7 @@ return {
                         },
                     },
                 },
+                basedpyright = {},
                 nil_ls = {},
                 yamlls = {},
                 terraformls = {

@@ -38,7 +38,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- Format keymap moved to conform.lua plugin
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -47,8 +47,27 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- Add executable permission to file
--- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- Run current file
+vim.keymap.set("n", "<leader>r", function()
+    local ft = vim.bo.filetype
+    local file = vim.fn.expand("%")
+    local cmd_map = {
+        python = "python3 " .. file,
+        lua = "lua " .. file,
+        javascript = "node " .. file,
+        typescript = "ts-node " .. file,
+        sh = "bash " .. file,
+        go = "go run " .. file,
+        rust = "cargo run",
+    }
+    local cmd = cmd_map[ft]
+    if cmd then
+        vim.cmd("w")
+        vim.cmd("split | terminal " .. cmd)
+    else
+        vim.notify("No run command for filetype: " .. ft, vim.log.levels.WARN)
+    end
+end, { desc = "Run current file" })
 
 vim.keymap.set("i", "jj", "<Esc>")
 
