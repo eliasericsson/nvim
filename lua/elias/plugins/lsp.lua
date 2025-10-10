@@ -17,11 +17,18 @@ return {
             servers = {
                 lua_ls = {},
                 rust_analyzer = {},
-                gopls = {},
+                gopls = {
+                    settings = {
+                        gopls = {
+                            gofumpt = true
+                        },
+                    },
+                },
+                basedpyright = {},
                 nil_ls = {},
                 yamlls = {},
                 terraformls = {
-                    on_attach = function ()
+                    on_attach = function()
                         require("treesitter-terraform-doc").setup({
                             -- The vim user command that will trigger the plugin.
                             command_name       = "OpenDoc",
@@ -32,7 +39,7 @@ return {
                             -- If true, the cursor will jump to the anchor in the documentation.
                             jump_argument      = true,
                         })
-                        vim.keymap.set("n", "gh", vim.cmd.OpenDoc, { desc = "Get help from the Terraform Documentation"})
+                        vim.keymap.set("n", "gh", vim.cmd.OpenDoc, { desc = "Get help from the Terraform Documentation" })
                     end
                 },
                 ts_ls = {},
@@ -40,6 +47,9 @@ return {
                 ruff = {},
                 eslint = {},
                 taplo = {},
+                elixirls = {
+                    cmd = { "/opt/homebrew/bin/elixir-ls" },
+                }
             },
         },
         config = function(_, opts)

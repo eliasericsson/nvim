@@ -17,10 +17,11 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     spec = {
         -- { "folke/tokyonight.nvim",  config = function() vim.cmd("colorscheme tokyonight") end },
-        { "ellisonleao/gruvbox.nvim", config = function() vim.cmd("colorscheme gruvbox") end },
+        -- { "ellisonleao/gruvbox.nvim", config = function() vim.cmd("colorscheme gruvbox") end },
+        { "scottmckendry/cyberdream.nvim", config = function() vim.cmd("colorscheme cyberdream") end },
         "HiPhish/rainbow-delimiters.nvim",     -- Rainbow colored parentheses
         "LudoPinelli/comment-box.nvim",        -- Comment box, a plugin to create comment boxes
-        "github/copilot.vim",                  -- GitHub Copilot
+        -- "github/copilot.vim",                  -- GitHub Copilot
         "grafana/vim-alloy",                   -- Grafana Alloy
         "lewis6991/gitsigns.nvim",             -- Gitsigns, a plugin to show git diff in the gutter
         "lukas-reineke/indent-blankline.nvim", -- Indentation guides
@@ -36,7 +37,7 @@ require("lazy").setup({
         { import = "elias.plugins" }
     },
     change_detection = {
-        enabled = false,
-        notify = false, -- get a notification when changes are detected
+        enabled = true,
+        notify = true,
     }
 })
